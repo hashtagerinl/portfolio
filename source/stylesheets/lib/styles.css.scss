@@ -1,2 +1,6 @@
-@import "compass";
-@import "variables", "mixins", "fonts", "base";
+@import "base";
+
+section.main {
+	background: image-url("background-main.jpg") 0 0 no-repeat;
+	background-size: cover;
+}

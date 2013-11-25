@@ -1,9 +1,13 @@
+@import "variables";
+@import "fonts";
+@import "mixins";
+
 html,
 button,
 input,
 select,
 textarea {
-    color: $near-black;
+  color: $near-black;
 }
 
 body {
@@ -17,38 +21,35 @@ body {
     outline: 0;
 }
 ::-moz-selection {
-    background: $sunny-delight;
+    background: $selection-color;
     text-shadow: none;
     color: $white;
 }
 
 ::selection {
-		background: $sunny-delight;
+		background: $selection-color;
     text-shadow: none;
     color: $white;
 }
 
 html {
 	color: $near-black;
-	font-size: $base-font-size;
-	line-height: $base-line-height;
 }
 
 p {
 	margin: {
 		top: 0;
-		bottom: $baseline;
 	}
 }
 
 a {
 	color: $near-black;
-	border-bottom: 1px dashed $sunny-delight;
+	border-bottom: 1px dashed $link-color;
   padding-bottom: 0.2em;
   text-decoration: none;
 
 	&:hover {
-		color: $sunny-side;
+		color: $link-color;
 		text-decoration: none;
 	}
 }
