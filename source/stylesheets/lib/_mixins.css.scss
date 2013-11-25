@@ -1,0 +1,138 @@
+/*==========================
+SCUT STRIP UNIT
+http://davidtheclark.github.io/scut/#strip_unit
+==========================*/
+
+@function scut-strip-unit (
+  $num
+) {
+
+  @return $num / ($num * 0 + 1);
+
+}
+
+//*==========================
+// SCUT PIXELS TO EMS
+// http://davidtheclark.github.io/scut/#pixels-to-ems
+//
+// Depends on `scut-strip-unit`.
+// ==========================*/
+
+@function em (
+  $pixels,
+  $base: 16
+) {
+
+  // $base could be in em or px (no unit = px).
+  // Adjust accordingly to create a $divisor that
+  // serves as context for $pixels.
+  $multiplier: if(unit($base) == em, 16, 1);
+  $divisor: scut-strip-unit($base) * $multiplier;
+
+  @return ($pixels / $divisor) * 1em;
+
+}
+
+// /*==========================
+// SCUT LIST: UNSTYLED
+// http://davidtheclark.github.io/scut/#list_unstyled
+// ==========================*/
+
+@mixin scut-list-unstyled {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+%scut-list-unstyled {
+  @include scut-list-unstyled;
+}
+
+// /*==========================
+// SCUT LIST: INLINE
+// http://davidtheclark.github.io/scut/#list_inline
+//
+// Depends on `list-unstyled`.
+// ==========================*/
+
+@mixin scut-list-inline (
+  $space: false
+) {
+
+  @include scut-list-unstyled;
+
+  & > li {
+    display: inline-block;
+  }
+
+  @if $space {
+    & > li + li {
+      margin-left: $space;
+    }
+  }
+
+}
+
+%scut-list-inline {
+  @include scut-list-inline;
+}
+
+// Media Queries
+
+@mixin MQ($canvas) {
+	// ie: @include MQ(XS)
+	// @media only screen and (max-width: 319px)
+	@if $canvas == XS {
+		@media only screen and (max-width: $XS - 1) {
+			@content;
+		}
+	}
+	// @media only screen and (min-width: 320px)
+	@else if $canvas == XSplus {
+		@media only screen and (min-width: $XS) {
+			@content;
+		}
+	}
+	// @media only screen and (max-width: 479px)
+	@else if $canvas == S {
+		@media only screen and (max-width: $S - 1) {
+			@content;
+		}
+	}
+	// @media only screen and (min-width: 480px)
+	@else if $canvas == Splus {
+		@media only screen and (min-width: $S) {
+			@content;
+		}
+	}
+	// @media only screen and (max-width: 767px)
+	@else if $canvas == M {
+		@media only screen and (max-width: $M - 1) {
+			@content;
+		}
+	}
+	// @media only screen and (max-width: 959px)
+	@else if $canvas == Mt {
+		@media only screen and (max-width: $M2) {
+			@content;
+		}
+	}
+	// @media only screen and (min-width: 768px)
+	@else if $canvas == Mplus {
+		@media only screen and (min-width: $M) {
+			@content;
+		}
+	}
+	// @media only screen and (max-width: 1023px)
+	@else if $canvas == L {
+		@media only screen and (max-width: $L - 1) {
+			@content;
+		}
+	}
+	// @media only screen and (min-width: 1024px)
+	@else if $canvas == Lplus {
+		@media only screen and (min-width: $L) {
+			@content;
+		}
+	}
+}
